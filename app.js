@@ -27,7 +27,7 @@ const game = (function (){
  const validXorO = (name, xORy,x, y) => {
     console.log('Valor actual:', gameboard.gameboardarray[x][y]);
     let playerName = name;
-    if (gameboard.gameboardarray[x][y]=='-') {
+    
       gameboard.gameboardarray[x][y]=xORy;
       console.log(gameboard.gameboardarray);
 
@@ -60,7 +60,7 @@ const game = (function (){
       }
     
 
-    }
+    
    
   }
 
@@ -110,14 +110,18 @@ let cell = document.querySelectorAll('.cell');
 
 cell.forEach(cell => {
   cell.addEventListener('click', () => {
-    alert(cell.id);
+        const [x, y] = cell.id.split(',').map(Number);
+
     if (turno) {
-      cell.textContent = 'x';
-      
+      cell.textContent = player1.xORy;
+      game.validXorO(player1.name, player1.xORy,x,y);
       turno=false;
     } else {
-      cell.textContent = 'o';
-      turno= true;
+      cell.textContent = player2.xORy;
+      game.validXorO(player2.name, player2.xORy,x,y);
+            turno= true;
+
+
     }
   });
 });
@@ -132,17 +136,7 @@ displayDom.domLogic();
 /*
 
 
-document.getElementById('choose-x').addEventListener('click', () => {
-  alert('X button clicked');
-createPlayer('player1', 'x')
-});
-
-document.getElementById('choose-o').addEventListener('click', () => {
-  alert('0 button clicked');
-  createPlayer('player2', '0')
-
-});
-// despues de escoger x o 0 x tiene que tirar, despues 0 ya asi hasta que acabe el juego, una vez que ambos escogieron sus 
-// tienes que escoger algo que vaya alternando x y 0
-
+faltan empates
+logic that prevents players from playing in spots already taken 
+Clean up the interface to allow players to put in their names, include a button to start/restart the game and add a display element that shows the results upon game end!
 */
