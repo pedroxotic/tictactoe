@@ -3,32 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <title>Tic Tac Toe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <h1>Tic Tac Toe</h1>
+    </header>
 
-<header>
-    <h1>Choose X or O</h1>
-</header>
-<form id="choose-player">
-    <label>
-        <input type="radio" name="player" value="X" checked>
-        X
-        <input type="text" name="playerXName" placeholder="Player1 name" required>
-    </label>
-    <label>
+    <form id="choose-player">
+        <label>
+            <input type="radio" name="player" value="X" checked>
+            <span>X</span>
+            <input type="text" name="playerXName" placeholder="Player 1 name" required>
+        </label>
+        <label>
+            <input type="radio" name="player" value="O">
+            <span>O</span>
+            <input type="text" name="player0Name" placeholder="Player 2 name" required>
+        </label>
+        <button type="submit" id="Start">Start Game</button>
+    </form>
 
-        <input type="radio" name="player" value="O">
-        0
-        <input type="text" name="player0Name" placeholder="Player2 name" required>
-    </label>
-    <button type="submit" id="Start">Start Game</button>
-</form>
-<button id="restart">restart</button>
-<button id="end">end game</button>
+    <div id="board-area"></div>
+    <div id="game-controls">
+        <button id="restart">Restart Game</button>
+        <button id="end">End Game</button>
+    </div>
 
-<link rel="stylesheet" href="style.css">
-<script src="app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

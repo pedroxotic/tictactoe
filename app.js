@@ -251,11 +251,14 @@ displayDom.domLogic();
 
 const displayDom = {};
 displayDom.displayBoard = () => {
-  const body = document.body;
+  const boardArea = document.getElementById('board-area');
+  // Remove any existing board
+  const oldContainer = document.getElementById('container');
+  if (oldContainer) oldContainer.remove();
   const container = document.createElement('div');
-  container.id = 'container'; // Cambiado de class a id
+  container.id = 'container';
 
-  body.appendChild(container);
+  boardArea.appendChild(container);
   gameboard.gameboardarray.forEach((fila, j) => {
     let coordenadaX = j;
     fila.forEach((cell, i) => {
