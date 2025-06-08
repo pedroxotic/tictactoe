@@ -21,114 +21,204 @@ console.log(gameboard.gameboardarray);
 // players also stored in objects and object that controls the flow of the game
 
 function createPlayer (name, xORy){
-    return{name, xORy};
+    let counter =0;
+    return{name, xORy, counter};
 
 }
+let player1;
+let player2;
+
 
 const game = (function (){
- const validXorO = (name, xORy,x, y) => {
-    
-      console.log(gameboard.gameboardarray[x][y]);
-   
+ const validXorO = (player, x, y) => {
+    console.log(gameboard.gameboardarray[x][y]);
 
-        gameboard.gameboardarray[x][y] != xORy;
-        // checks horizontally 
-        if (gameboard.gameboardarray[0][1] == xORy && gameboard.gameboardarray[0][0] == xORy && gameboard.gameboardarray[0][2] == xORy) {
-          alert(name + ' won');
-          emptyBoard();
-        }
-        if (gameboard.gameboardarray[1][0] == xORy && gameboard.gameboardarray[1][1] == xORy && gameboard.gameboardarray[1][2] == xORy) {
-          alert(name + ' won');
-          emptyBoard();
-        }
-        if (gameboard.gameboardarray[2][0] == xORy && gameboard.gameboardarray[2][1] == xORy && gameboard.gameboardarray[2][2] == xORy) {
-          alert(name + ' won');
-          emptyBoard();
-        }
-        //checks vertically
-        if (gameboard.gameboardarray[0][0] == xORy && gameboard.gameboardarray[1][0] == xORy && gameboard.gameboardarray[2][0] == xORy) {
-          alert(name + ' won');
-          emptyBoard();
-        }
-        if (gameboard.gameboardarray[0][1] == xORy && gameboard.gameboardarray[1][1] == xORy && gameboard.gameboardarray[2][1] == xORy) {
-          alert(name + ' won');
-          emptyBoard();
-        }
-        if (gameboard.gameboardarray[0][2] == xORy && gameboard.gameboardarray[1][2] == xORy && gameboard.gameboardarray[2][2] == xORy) {
-          alert(name + ' won');
-          emptyBoard();
-        }
-        // checks diagonally
-        if (gameboard.gameboardarray[0][0] == xORy && gameboard.gameboardarray[1][1] == xORy && gameboard.gameboardarray[2][2] == xORy) {
-          alert(name + ' won');
-          emptyBoard();
-        }
-        if (gameboard.gameboardarray[2][0] == xORy && gameboard.gameboardarray[1][1] == xORy && gameboard.gameboardarray[0][2] == xORy) {
-          alert(name + ' won');
-          emptyBoard();
-        }
-        if (gameboard.gameboardarray.every(fila =>
-          fila.every(celda => celda !== '-'))) {
-          alert('board full tie');
-          emptyBoard();
-        }
-      
+    // checks horizontally 
+    if (
+      gameboard.gameboardarray[0][1] == player.xORy &&
+      gameboard.gameboardarray[0][0] == player.xORy &&
+      gameboard.gameboardarray[0][2] == player.xORy
+    ) {
+      player.counter += 1;
+      console.log(player.name + ' score: ' + player.counter);
+      alert(player.name + ' won');
+      emptyBoard();
+    }
+    if (
+      gameboard.gameboardarray[1][0] == player.xORy &&
+      gameboard.gameboardarray[1][1] == player.xORy &&
+      gameboard.gameboardarray[1][2] == player.xORy
+    ) {
+      player.counter += 1;
+      console.log(player.name + ' score: ' + player.counter);
+      alert(player.name + ' won');
+      emptyBoard();
+    }
+    if (
+      gameboard.gameboardarray[2][0] == player.xORy &&
+      gameboard.gameboardarray[2][1] == player.xORy &&
+      gameboard.gameboardarray[2][2] == player.xORy
+    ) {
+      player.counter += 1;
+      console.log(player.name + ' score: ' + player.counter);
+      alert(player.name + ' won');
+      emptyBoard();
+    }
+    //checks vertically
+    if (
+      gameboard.gameboardarray[0][0] == player.xORy &&
+      gameboard.gameboardarray[1][0] == player.xORy &&
+      gameboard.gameboardarray[2][0] == player.xORy
+    ) {
+      player.counter += 1;
+      console.log(player.name + ' score: ' + player.counter);
+      alert(player.name + ' won');
+      emptyBoard();
+    }
+    if (
+      gameboard.gameboardarray[0][1] == player.xORy &&
+      gameboard.gameboardarray[1][1] == player.xORy &&
+      gameboard.gameboardarray[2][1] == player.xORy
+    ) {
+      player.counter += 1;
+      console.log(player.name + ' score: ' + player.counter);
+      alert(player.name + ' won');
+      emptyBoard();
+    }
+    if (
+      gameboard.gameboardarray[0][2] == player.xORy &&
+      gameboard.gameboardarray[1][2] == player.xORy &&
+      gameboard.gameboardarray[2][2] == player.xORy
+    ) {
+      player.counter += 1;
+      console.log(player.name + ' score: ' + player.counter);
+      alert(player.name + ' won');
+      emptyBoard();
+    }
+    // checks diagonally
+    if (
+      gameboard.gameboardarray[0][0] == player.xORy &&
+      gameboard.gameboardarray[1][1] == player.xORy &&
+      gameboard.gameboardarray[2][2] == player.xORy
+    ) {
+      player.counter += 1;
+      console.log(player.name + ' score: ' + player.counter);
+      alert(player.name + ' won');
+      emptyBoard();
+    }
+    if (
+      gameboard.gameboardarray[2][0] == player.xORy &&
+      gameboard.gameboardarray[1][1] == player.xORy &&
+      gameboard.gameboardarray[0][2] == player.xORy
+    ) {
+      player.counter += 1;
+      console.log(player.name + ' score: ' + player.counter);
+      alert(player.name + ' won');
+      emptyBoard();
+    }
+    if (
+      gameboard.gameboardarray.every(fila =>
+        fila.every(celda => celda !== '-')
+      )
+    ) {
+      alert('board full tie');
+      emptyBoard();
+    }
 
-      gameboard.gameboardarray[x][y]=xORy;
-      console.log(gameboard.gameboardarray);
+    gameboard.gameboardarray[x][y] = player.xORy;
+    console.log(gameboard.gameboardarray);
 
-      
-
-      // checks horizontally 
-      if(gameboard.gameboardarray[0][1]==xORy&&gameboard.gameboardarray[0][0]==xORy&&gameboard.gameboardarray[0][2]==xORy){
-        alert(name+' won');
-            emptyBoard();
-
-      }
-      if(gameboard.gameboardarray[1][0]==xORy&&gameboard.gameboardarray[1][1]==xORy&&gameboard.gameboardarray[1][2]==xORy){
-        alert(name+' won');
-            emptyBoard();
-
-      }
-      if(gameboard.gameboardarray[2][0]==xORy&&gameboard.gameboardarray[2][1]==xORy&&gameboard.gameboardarray[2][2]==xORy){
-        alert(name+' won');
-            emptyBoard();
-
-      }
-      //checks vertically
-      if(gameboard.gameboardarray[0][0]==xORy&&gameboard.gameboardarray[1][0]==xORy&&gameboard.gameboardarray[2][0]==xORy){
-        alert(name+' won');
-            emptyBoard();
-
-      }
-      if(gameboard.gameboardarray[0][1]==xORy&&gameboard.gameboardarray[1][1]==xORy&&gameboard.gameboardarray[2][1]==xORy){
-        alert(name+' won');
-            emptyBoard();
-
-      }
-      if(gameboard.gameboardarray[0][2]==xORy&&gameboard.gameboardarray[1][2]==xORy&&gameboard.gameboardarray[2][2]==xORy){
-        alert(name+' won');
-            emptyBoard();
-
-      }
-      // checks diagonally
-      if(gameboard.gameboardarray[0][0]==xORy&&gameboard.gameboardarray[1][1]==xORy&&gameboard.gameboardarray[2][2]==xORy){
-        alert(name+' won');
-            emptyBoard();
-
-      }
-      if(gameboard.gameboardarray[2][0]==xORy&&gameboard.gameboardarray[1][1]==xORy&&gameboard.gameboardarray[0][2]==xORy){
-        alert(name+' won');
-            emptyBoard();
-
-      }
-    if(gameboard.gameboardarray.every(fila =>
-  fila.every(celda => celda !== '-')))
-  {
-    alert('board full tie');
-    emptyBoard();
-
-  }
+    // checks horizontally 
+    if (
+      gameboard.gameboardarray[0][1] == player.xORy &&
+      gameboard.gameboardarray[0][0] == player.xORy &&
+      gameboard.gameboardarray[0][2] == player.xORy
+    ) {
+      player.counter += 1;
+      console.log(player.name + ' score: ' + player.counter);
+      alert(player.name + ' won');
+      emptyBoard();
+    }
+    if (
+      gameboard.gameboardarray[1][0] == player.xORy &&
+      gameboard.gameboardarray[1][1] == player.xORy &&
+      gameboard.gameboardarray[1][2] == player.xORy
+    ) {
+      player.counter += 1;
+      console.log(player.name + ' score: ' + player.counter);
+      alert(player.name + ' won');
+      emptyBoard();
+    }
+    if (
+      gameboard.gameboardarray[2][0] == player.xORy &&
+      gameboard.gameboardarray[2][1] == player.xORy &&
+      gameboard.gameboardarray[2][2] == player.xORy
+    ) {
+      player.counter += 1;
+      console.log(player.name + ' score: ' + player.counter);
+      alert(player.name + ' won');
+      emptyBoard();
+    }
+    //checks vertically
+    if (
+      gameboard.gameboardarray[0][0] == player.xORy &&
+      gameboard.gameboardarray[1][0] == player.xORy &&
+      gameboard.gameboardarray[2][0] == player.xORy
+    ) {
+      player.counter += 1;
+      console.log(player.name + ' score: ' + player.counter);
+      alert(player.name + ' won');
+      emptyBoard();
+    }
+    if (
+      gameboard.gameboardarray[0][1] == player.xORy &&
+      gameboard.gameboardarray[1][1] == player.xORy &&
+      gameboard.gameboardarray[2][1] == player.xORy
+    ) {
+      player.counter += 1;
+      console.log(player.name + ' score: ' + player.counter);
+      alert(player.name + ' won');
+      emptyBoard();
+    }
+    if (
+      gameboard.gameboardarray[0][2] == player.xORy &&
+      gameboard.gameboardarray[1][2] == player.xORy &&
+      gameboard.gameboardarray[2][2] == player.xORy
+    ) {
+      player.counter += 1;
+      console.log(player.name + ' score: ' + player.counter);
+      alert(player.name + ' won');
+      emptyBoard();
+    }
+    // checks diagonally
+    if (
+      gameboard.gameboardarray[0][0] == player.xORy &&
+      gameboard.gameboardarray[1][1] == player.xORy &&
+      gameboard.gameboardarray[2][2] == player.xORy
+    ) {
+      player.counter += 1;
+      console.log(player.name + ' score: ' + player.counter);
+      alert(player.name + ' won');
+      emptyBoard();
+    }
+    if (
+      gameboard.gameboardarray[2][0] == player.xORy &&
+      gameboard.gameboardarray[1][1] == player.xORy &&
+      gameboard.gameboardarray[0][2] == player.xORy
+    ) {
+      player.counter += 1;
+      console.log(player.name + ' score: ' + player.counter);
+      alert(player.name + ' won');
+      emptyBoard();
+    }
+    if (
+      gameboard.gameboardarray.every(fila =>
+        fila.every(celda => celda !== '-')
+      )
+    ) {
+      alert('board full tie');
+      emptyBoard();
+    }
   }
 
 
@@ -146,9 +236,11 @@ displayDom.domLogic();
 
 
 })
-  
 
-  return { validXorO};
+
+
+
+  return { validXorO, emptyBoard};
 
 })();
 
@@ -186,10 +278,8 @@ displayDom.deleteDomContainer = function () {
 
 
 
-displayDom.displayBoard();
 
-const player1= createPlayer('pedro', 'x');
-const player2= createPlayer('viani', '0');
+
 
 
 displayDom.domLogic = () =>{
@@ -211,11 +301,11 @@ cell.forEach(cell => {
 
       if (turno) {
       cell.textContent = player1.xORy;
-      game.validXorO(player1.name, player1.xORy,x,y);
+      game.validXorO(player1,x,y);
       turno=false;
       } else {
       cell.textContent = player2.xORy;
-      game.validXorO(player2.name, player2.xORy,x,y);
+      game.validXorO(player2,x,y);
             turno= true;
 
 
@@ -227,13 +317,43 @@ cell.forEach(cell => {
 }
 
 
-displayDom.domLogic();
 
+const restartBtn = document.getElementById('restart');
+restartBtn.addEventListener('click', () => {
+game.emptyBoard();
+});
 
 
 /*
 
 
-logic that prevents players from playing in spots already taken 
 Clean up the interface to allow players to put in their names, include a button to start/restart the game and add a display element that shows the results upon game end!
 */
+const endBtn = document.getElementById('end');
+document.getElementById('choose-player').addEventListener("submit", (e)=>{
+  e.preventDefault();
+  displayDom.displayBoard();
+  displayDom.domLogic();
+  const chosePlayerForm = document.getElementById('choose-player');
+
+  document.getElementById('restart').style.display = 'block';
+  let Player1name = chosePlayerForm.elements['playerXName'].value;
+  let Player2name = chosePlayerForm.elements['player0Name'].value;
+
+  player1 = createPlayer(Player1name, 'x');
+  player2 = createPlayer(Player2name, '0');
+  chosePlayerForm.style.display = 'none';
+
+   endBtn.style.display = 'block';
+
+
+})
+
+endBtn.addEventListener('click', ()=>{
+
+alert("Player 1: " + player1.counter + "\nPlayer 2: " + player2.counter);
+})
+
+
+
+//add a display element that shows the results upon game end!

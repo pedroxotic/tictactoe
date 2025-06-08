@@ -11,6 +11,22 @@
 <header>
     <h1>Choose X or O</h1>
 </header>
+<form id="choose-player">
+    <label>
+        <input type="radio" name="player" value="X" checked>
+        X
+        <input type="text" name="playerXName" placeholder="Player1 name" required>
+    </label>
+    <label>
+
+        <input type="radio" name="player" value="O">
+        0
+        <input type="text" name="player0Name" placeholder="Player2 name" required>
+    </label>
+    <button type="submit" id="Start">Start Game</button>
+</form>
+<button id="restart">restart</button>
+<button id="end">end game</button>
 
 <link rel="stylesheet" href="style.css">
 <script src="app.js"></script>
