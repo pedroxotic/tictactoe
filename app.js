@@ -28,8 +28,56 @@ function createPlayer (name, xORy){
 const game = (function (){
  const validXorO = (name, xORy,x, y) => {
     
+      console.log(gameboard.gameboardarray[x][y]);
+   
+
+        gameboard.gameboardarray[x][y] != xORy;
+        // checks horizontally 
+        if (gameboard.gameboardarray[0][1] == xORy && gameboard.gameboardarray[0][0] == xORy && gameboard.gameboardarray[0][2] == xORy) {
+          alert(name + ' won');
+          emptyBoard();
+        }
+        if (gameboard.gameboardarray[1][0] == xORy && gameboard.gameboardarray[1][1] == xORy && gameboard.gameboardarray[1][2] == xORy) {
+          alert(name + ' won');
+          emptyBoard();
+        }
+        if (gameboard.gameboardarray[2][0] == xORy && gameboard.gameboardarray[2][1] == xORy && gameboard.gameboardarray[2][2] == xORy) {
+          alert(name + ' won');
+          emptyBoard();
+        }
+        //checks vertically
+        if (gameboard.gameboardarray[0][0] == xORy && gameboard.gameboardarray[1][0] == xORy && gameboard.gameboardarray[2][0] == xORy) {
+          alert(name + ' won');
+          emptyBoard();
+        }
+        if (gameboard.gameboardarray[0][1] == xORy && gameboard.gameboardarray[1][1] == xORy && gameboard.gameboardarray[2][1] == xORy) {
+          alert(name + ' won');
+          emptyBoard();
+        }
+        if (gameboard.gameboardarray[0][2] == xORy && gameboard.gameboardarray[1][2] == xORy && gameboard.gameboardarray[2][2] == xORy) {
+          alert(name + ' won');
+          emptyBoard();
+        }
+        // checks diagonally
+        if (gameboard.gameboardarray[0][0] == xORy && gameboard.gameboardarray[1][1] == xORy && gameboard.gameboardarray[2][2] == xORy) {
+          alert(name + ' won');
+          emptyBoard();
+        }
+        if (gameboard.gameboardarray[2][0] == xORy && gameboard.gameboardarray[1][1] == xORy && gameboard.gameboardarray[0][2] == xORy) {
+          alert(name + ' won');
+          emptyBoard();
+        }
+        if (gameboard.gameboardarray.every(fila =>
+          fila.every(celda => celda !== '-'))) {
+          alert('board full tie');
+          emptyBoard();
+        }
+      
+
       gameboard.gameboardarray[x][y]=xORy;
       console.log(gameboard.gameboardarray);
+
+      
 
       // checks horizontally 
       if(gameboard.gameboardarray[0][1]==xORy&&gameboard.gameboardarray[0][0]==xORy&&gameboard.gameboardarray[0][2]==xORy){
@@ -154,19 +202,25 @@ let cell = document.querySelectorAll('.cell');
 
 cell.forEach(cell => {
   cell.addEventListener('click', () => {
-        const [x, y] = cell.id.split(',').map(Number);
+    const [x, y] = cell.id.split(',').map(Number);
+     if (gameboard.gameboardarray[x][y] != '-') {
+      alert('place already taken')
+     }
+     else{
+        
 
-    if (turno) {
+      if (turno) {
       cell.textContent = player1.xORy;
       game.validXorO(player1.name, player1.xORy,x,y);
       turno=false;
-    } else {
+      } else {
       cell.textContent = player2.xORy;
       game.validXorO(player2.name, player2.xORy,x,y);
             turno= true;
 
 
     }
+  }
   });
 });
 
