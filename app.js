@@ -1,6 +1,8 @@
 // store gameboard as an array inside a gameboard object. 
 
-const gameboard = (function (){
+let gameboard ={};
+
+ gameboard.arrayConstructor = function   (){
     const gameboardarray = [];
 
     for (let i = 0; i < 3; i++) {
@@ -8,12 +10,12 @@ const gameboard = (function (){
   for (let j = 0; j < 3; j++) {
     gameboardarray[i][j] = '-'; // valor vacío (string vacío)
   }
-  //siguiente paso añadir bordes interiores a la tabla 
 }
+return gameboardarray;
+ 
+};
 
-
-    return {gameboardarray};
-})();
+gameboard.gameboardarray = gameboard.arrayConstructor();
 
 console.log(gameboard.gameboardarray);
 // players also stored in objects and object that controls the flow of the game
@@ -25,44 +27,78 @@ function createPlayer (name, xORy){
 
 const game = (function (){
  const validXorO = (name, xORy,x, y) => {
-    console.log('Valor actual:', gameboard.gameboardarray[x][y]);
-    let playerName = name;
     
       gameboard.gameboardarray[x][y]=xORy;
       console.log(gameboard.gameboardarray);
 
       // checks horizontally 
       if(gameboard.gameboardarray[0][1]==xORy&&gameboard.gameboardarray[0][0]==xORy&&gameboard.gameboardarray[0][2]==xORy){
-        console.log(playerName+'won');
+        alert(name+' won');
+            emptyBoard();
+
       }
       if(gameboard.gameboardarray[1][0]==xORy&&gameboard.gameboardarray[1][1]==xORy&&gameboard.gameboardarray[1][2]==xORy){
-        console.log(playerName+'won');
+        alert(name+' won');
+            emptyBoard();
+
       }
       if(gameboard.gameboardarray[2][0]==xORy&&gameboard.gameboardarray[2][1]==xORy&&gameboard.gameboardarray[2][2]==xORy){
-        console.log(playerName+'won');
+        alert(name+' won');
+            emptyBoard();
+
       }
       //checks vertically
       if(gameboard.gameboardarray[0][0]==xORy&&gameboard.gameboardarray[1][0]==xORy&&gameboard.gameboardarray[2][0]==xORy){
-        console.log(playerName+'won');
+        alert(name+' won');
+            emptyBoard();
+
       }
       if(gameboard.gameboardarray[0][1]==xORy&&gameboard.gameboardarray[1][1]==xORy&&gameboard.gameboardarray[2][1]==xORy){
-        console.log(playerName+'won');
+        alert(name+' won');
+            emptyBoard();
+
       }
       if(gameboard.gameboardarray[0][2]==xORy&&gameboard.gameboardarray[1][2]==xORy&&gameboard.gameboardarray[2][2]==xORy){
-        console.log(playerName+'won');
+        alert(name+' won');
+            emptyBoard();
+
       }
       // checks diagonally
       if(gameboard.gameboardarray[0][0]==xORy&&gameboard.gameboardarray[1][1]==xORy&&gameboard.gameboardarray[2][2]==xORy){
-        console.log(playerName+'won');
+        alert(name+' won');
+            emptyBoard();
+
       }
       if(gameboard.gameboardarray[2][0]==xORy&&gameboard.gameboardarray[1][1]==xORy&&gameboard.gameboardarray[0][2]==xORy){
-        console.log(playerName+'won');
-      }
-    
+        alert(name+' won');
+            emptyBoard();
 
-    
-   
+      }
+    if(gameboard.gameboardarray.every(fila =>
+  fila.every(celda => celda !== '-')))
+  {
+    alert('board full tie');
+    emptyBoard();
+
   }
+  }
+
+
+const emptyBoard = (function (){
+
+  delete gameboard.gameboardarray;
+  // vuelves a crear el array
+  gameboard.gameboardarray = gameboard.arrayConstructor();
+  console.log( gameboard.gameboardarray);
+// lamar a la función  que  vuelve a hacer display del array
+displayDom.deleteDomContainer();
+displayDom.displayBoard();
+displayDom.domLogic();
+
+
+
+})
+  
 
   return { validXorO};
 
@@ -81,9 +117,9 @@ displayDom.displayBoard = () => {
 
   body.appendChild(container);
   gameboard.gameboardarray.forEach((fila, j) => {
-    let coordenadaX =j;
+    let coordenadaX = j;
     fila.forEach((cell, i) => {
-      let coordenadaY=i;
+      let coordenadaY = i;
       const cellD = document.createElement('div');
       cellD.classList.add('cell');
       cellD.id = `${j},${i}`;
@@ -92,6 +128,14 @@ displayDom.displayBoard = () => {
     });
   });
 };
+
+displayDom.deleteDomContainer = function () {
+  const container = document.getElementById('container');
+  if (container) {
+    container.remove();
+  }
+};
+
 
 
 displayDom.displayBoard();
@@ -136,7 +180,6 @@ displayDom.domLogic();
 /*
 
 
-faltan empates
 logic that prevents players from playing in spots already taken 
 Clean up the interface to allow players to put in their names, include a button to start/restart the game and add a display element that shows the results upon game end!
 */
